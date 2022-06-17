@@ -20,7 +20,8 @@ public class GifService {
 
     }
 
-    public ResponseEntity<GifDTO> getGif(String tag) {
+    public ResponseEntity<GifDTO> getGif(String tag)  {
         return giphyClient.getRandomGif(apiKey, tag);
+
     }
 }
