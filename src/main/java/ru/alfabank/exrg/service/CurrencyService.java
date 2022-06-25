@@ -1,23 +1,10 @@
 package ru.alfabank.exrg.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-import ru.alfabank.exrg.client.OERClient;
-import ru.alfabank.exrg.dto.CurrencyDTO;
+import ru.alfabank.exrg.util.Result;
 
-@Service
-public class CurrencyService {
-    private final OERClient oerClient;
-    @Value("${OER.app_id}")
-    private String apiId;
+import java.util.Set;
 
-    @Autowired
-    public CurrencyService(OERClient oerClient) {
-        this.oerClient = oerClient;
-    }
-
-    public CurrencyDTO getCurrencies() {
-        return oerClient.getCurrency(apiId);
-    }
+public interface CurrencyService {
+    Set<String> getCodes();
+    Result getResult(String code);
 }

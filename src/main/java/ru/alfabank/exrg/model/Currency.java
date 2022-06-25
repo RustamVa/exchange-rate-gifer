@@ -1,14 +1,14 @@
-package ru.alfabank.exrg.dto;
+package ru.alfabank.exrg.model;
 
 import lombok.Data;
 
 import java.util.TreeMap;
 
 @Data
-public class CurrencyDTO {
+public class Currency {
     private String disclaimer;
     private String license;
-    private long timestamp;
+    private Long timestamp;
     private String base;
     private TreeMap<String, Double> rates;
 }
