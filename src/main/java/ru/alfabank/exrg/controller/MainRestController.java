@@ -13,7 +13,7 @@ import java.util.List;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:63342")
+@CrossOrigin(origins = "${js.origin}")
 @RequestMapping("/api/currency")
 public class MainRestController {
 

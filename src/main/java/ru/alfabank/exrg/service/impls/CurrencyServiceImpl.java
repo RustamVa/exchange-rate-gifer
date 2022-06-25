@@ -53,6 +53,13 @@ public class CurrencyServiceImpl implements CurrencyService {
         return Double.compare(prevRate, currRate) == -1 ? Result.RICH : Result.BROKE;
     }
 
+    /*
+        OpenExchangeRate API обновляет курсы валют раз в час, чтобы не отправлять запросы к сервису каждый раз
+        до обновления, сервис хранит полученные валюты, пока не будет новый запрос от клиента после обновления валют.
+        Курсы валют вчерашнего дня (полученные с OER API c помощью указания даты в URL) могут совпадать
+        с курсами сегодняшнего дня, из-за разницы часовых поясов, (не найдено в документации API, по какому часовому поясу
+        происходит смена дня в OER) поэтому в методе updatePrevCurrency() есть дополнительная проверка.
+    */
     private void updateCurrencies() {
         this.updateCurrentCurrency();
         this.updatePrevCurrency();
@@ -68,7 +75,6 @@ public class CurrencyServiceImpl implements CurrencyService {
             }
         }
     }
-
 
     private void updatePrevCurrency() {
         Currency currCurrency = this.currentCurrency;
